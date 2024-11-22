@@ -1,0 +1,2 @@
+# nvbar
+My neovim setup
