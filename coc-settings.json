@@ -1,0 +1,19 @@
+
+{
+  "suggest.autoTrigger": "always",
+  "suggest.noselect": false,
+  "diagnostic.virtualText": true,
+  "diagnostic.enableSign": true,
+  "languageserver": {
+    "python": {
+      "command": "pyls",
+      "filetypes": ["python"]
+    },
+    "javascript": {
+      "command": "~/.local/share/nvim/mason/bin/typescript-language-server",
+      "args": ["--stdio"],
+      "filetypes": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+      "rootPatterns": ["tsconfig.json", "package.json", ".git"]
+    }
+  }
+}
