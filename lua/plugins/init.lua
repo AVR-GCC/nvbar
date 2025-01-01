@@ -19,4 +19,20 @@ return {
   -- Completion (optional but recommended)
   { 'hrsh7th/nvim-cmp', event = "InsertEnter" },
   { 'hrsh7th/cmp-nvim-lsp', event = "InsertEnter", after = "nvim-cmp" },
+  {
+  	"nvim-treesitter/nvim-treesitter",
+    config = function()
+      require("nvim-tree").setup({
+        filters = {
+          dotfiles = false,  -- This shows hidden files (dotfiles)
+        },
+      })
+    end,
+  	-- opts = {
+  	-- 	ensure_installed = {
+  	-- 		"vim", "lua", "vimdoc",
+  	--     "html", "css"
+  	-- 	},
+  	-- },
+  },
 }
