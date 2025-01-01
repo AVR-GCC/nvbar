@@ -9,4 +9,5 @@ map("i", "jk", "<ESC>")
 
 map("t", "<C-w>", "<C-\\><C-n>")
 map("n", "<leader>u", "viw\"_dhp")
+map('n', '<leader>lg', '<cmd>LazyGit<CR>', { noremap = true, silent = true })
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
