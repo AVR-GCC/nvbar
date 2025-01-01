@@ -8,4 +8,5 @@ map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 
 map("t", "<C-w>", "<C-\\><C-n>")
+map("n", "<leader>u", "viw\"_dhp")
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
