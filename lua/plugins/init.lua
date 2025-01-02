@@ -20,6 +20,10 @@ return {
   { 'hrsh7th/nvim-cmp', event = "InsertEnter" },
   { 'hrsh7th/cmp-nvim-lsp', event = "InsertEnter", after = "nvim-cmp" },
   {
+    "hrsh7th/vim-vsnip",
+    event = "InsertEnter"
+  },
+  {
   	"nvim-treesitter/nvim-treesitter",
     config = function()
       require("nvim-tree").setup({
