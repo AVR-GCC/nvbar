@@ -18,7 +18,7 @@ end
 
 require("mason").setup()
 require("mason-lspconfig").setup({
-  ensure_installed = { "rust_analyzer" },
+  ensure_installed = { "rust_analyzer", "clangd" },
 })
 local nvim_lsp = require('lspconfig')
 local on_attach = function(client, bufnr)
@@ -40,9 +40,24 @@ nvim_lsp.rust_analyzer.setup({
   capabilities = capabilities,
   -- ... other settings from above ...
 })
+nvim_lsp.clangd.setup({
+  capabilities = capabilities,
+  -- ... other settings from above ...
+})
 -- configuring single server, example: typescript
 -- lspconfig.ts_ls.setup {
 --   on_attach = nvlsp.on_attach,
 --   on_init = nvlsp.on_init,
 --   capabilities = nvlsp.capabilities,
 -- }
+local cmp = require("cmp")
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      vim.fn["vsnip#anonymous"](args.body)
+    end,
+  },
+  sources = {
+    { name = "nvim_lsp" },
+  },
+})
