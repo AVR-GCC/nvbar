@@ -42,5 +42,6 @@ return {
   {
     'kdheepak/lazygit.nvim',
     lazy = false,
-  }
+  },
+  { "neoclide/coc.nvim", branch = "release" }
 }

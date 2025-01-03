@@ -18,7 +18,7 @@ end
 
 require("mason").setup()
 require("mason-lspconfig").setup({
-  ensure_installed = { "rust_analyzer", "clangd" },
+  ensure_installed = { "rust_analyzer", "clangd", "pyright" },
 })
 local nvim_lsp = require('lspconfig')
 local on_attach = function(client, bufnr)
@@ -41,6 +41,10 @@ nvim_lsp.rust_analyzer.setup({
   -- ... other settings from above ...
 })
 nvim_lsp.clangd.setup({
+  capabilities = capabilities,
+  -- ... other settings from above ...
+})
+nvim_lsp.pyright.setup({
   capabilities = capabilities,
   -- ... other settings from above ...
 })

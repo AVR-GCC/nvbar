@@ -1,0 +1,78 @@
+{
+  "suggest.noselect": false,
+  "suggest.enablePreview": true,
+  "suggest.disableKind": false,
+  "suggest.maxPreviewWidth": 80,
+  "suggest.minTriggerInputLength": 2,
+  "suggest.timeout": 500,
+  "suggest.completionItemKindLabels": {
+    "method": "M",
+    "function": "F",
+    "constructor": "C",
+    "field": "Fld",
+    "variable": "Var",
+    "class": "Cl",
+    "interface": "I",
+    "module": "Mod",
+    "property": "Prop",
+    "unit": "U",
+    "value": "Val",
+    "enum": "E",
+    "keyword": "K",
+    "snippet": "S",
+    "text": "Txt",
+    "color": "Col",
+    "file": "File",
+    "reference": "Ref",
+    "folder": "Dir",
+    "enumMember": "Em",
+    "constant": "Cst",
+    "struct": "Str",
+    "event": "Evt",
+    "operator": "Op",
+    "typeParameter": "TP"
+  },
+  "coc.preferences.formatOnSaveFiletypes": ["cpp", "rust"],
+  "coc.preferences.jumpCommand": "split",
+  "diagnostic.errorSign": "✖",
+  "diagnostic.warningSign": "⚠",
+  "diagnostic.infoSign": "ℹ",
+  "diagnostic.hintSign": "➤",
+  "diagnostic.virtualText": true,
+  "diagnostic.virtualTextCurrentLineOnly": false,
+  "languageserver": {
+    "clangd": {
+      "command": "clangd",
+      "rootPatterns": ["compile_flags.txt", "compile_commands.json"],
+      "filetypes": ["c", "cpp", "objc", "objcpp"],
+      "initializationOptions": {
+        "clangdFileStatus": true,
+        "clangd.fallbackFlags": ["-std=c++17"]
+      }
+    },
+    "rust-analyzer": {
+      "command": "rust-analyzer",
+      "filetypes": ["rust"],
+      "rootPatterns": ["Cargo.toml"],
+      "initializationOptions": {
+        "cargo": {
+          "allFeatures": true,
+          "loadOutDirsFromCheck": true
+        },
+        "procMacro": {
+          "enable": true
+        },
+        "inlayHints": {
+          "typeHints": true,
+          "parameterHints": true
+        }
+      }
+    }
+  },
+  "rust-analyzer.diagnostics.enable": true,
+  "rust-analyzer.checkOnSave.command": "clippy",
+  "rust-analyzer.checkOnSave.allTargets": true,
+  "rust-analyzer.lens.enable": true,
+  "rust-analyzer.lens.run.enable": true,
+  "rust-analyzer.lens.debug.enable": true
+}
