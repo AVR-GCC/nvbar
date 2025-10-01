@@ -49,6 +49,18 @@ return {
   	-- 	},
   	-- },
   },
+
+  -- File explorer (if you use it)
+  {
+    "nvim-tree/nvim-tree.lua",
+    config = function()
+      require("nvim-tree").setup({
+        filters = {
+          dotfiles = false,  -- This shows hidden files (dotfiles)
+        },
+      })
+    end,
+  },
   {
     'kdheepak/lazygit.nvim',
     lazy = false,
