@@ -34,11 +34,14 @@ return {
     event = "InsertEnter"
   },
   {
-  	"nvim-treesitter/nvim-treesitter",
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
     config = function()
-      require("nvim-tree").setup({
-        filters = {
-          dotfiles = false,  -- This shows hidden files (dotfiles)
+      require('nvim-treesitter.configs').setup({
+        ensure_installed = { "markdown", "markdown_inline", "elixir", "heex", "eex", "vim", "lua", "vimdoc", "html", "css" },
+        highlight = {
+          enable = true,
+          additional_vim_regex_highlighting = false,
         },
       })
     end,
