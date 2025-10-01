@@ -1,5 +1,14 @@
 return {
   {
+    -- snippet plugin
+    "L3MON4D3/LuaSnip",
+    dependencies = "rafamadriz/friendly-snippets",
+    opts = { history = true, updateevents = "TextChanged,TextChangedI" },
+    config = function(_, opts)
+      require("configs.misc").luasnip(opts)
+    end,
+  },
+  {
     "stevearc/conform.nvim",
     -- event = 'BufWritePre', -- uncomment for format on save
     opts = require "configs.conform",
@@ -11,6 +20,7 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     config = function()
       require "configs.lspconfig"
+      require "configs.snippets"
     end,
   },
   { 'williamboman/mason.nvim', event = { "BufReadPre", "BufNewFile" } },

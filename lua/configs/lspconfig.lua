@@ -26,6 +26,7 @@ local on_attach = function(client, bufnr)
 end
 
 nvim_lsp.rust_analyzer.setup({
+  cmd = { os.getenv("HOME") .. "/.local/bin/rust-analyzer" },
   on_attach = on_attach,
   settings = {
     ['rust-analyzer'] = {
@@ -55,13 +56,30 @@ nvim_lsp.pyright.setup({
 --   capabilities = nvlsp.capabilities,
 -- }
 local cmp = require("cmp")
+local luasnip = require("luasnip")
+
 cmp.setup({
   snippet = {
     expand = function(args)
-      vim.fn["vsnip#anonymous"](args.body)
+      luasnip.lsp_expand(args.body)
     end,
   },
+  mapping = cmp.mapping.preset.insert({
+    ["<Tab>"] = cmp.mapping(function(fallback)
+      -- Check if there's an exact snippet match
+      if luasnip.expandable() then
+        luasnip.expand()
+      elseif cmp.visible() then
+        cmp.select_next_item()
+      else
+        fallback()
+      end
+    end, { "i", "s" }),
+    ["<CR>"] = cmp.mapping.confirm({ select = true }),
+  }),
   sources = {
-    { name = "nvim_lsp" },
+    { name = "luasnip", priority = 1000 },
+    { name = "nvim_lsp", priority = 500 },
+    { name = 'render-markdown' },
   },
 })
