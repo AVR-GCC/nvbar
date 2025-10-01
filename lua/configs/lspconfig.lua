@@ -50,11 +50,11 @@ nvim_lsp.pyright.setup({
   -- ... other settings from above ...
 })
 -- configuring single server, example: typescript
--- lspconfig.ts_ls.setup {
---   on_attach = nvlsp.on_attach,
---   on_init = nvlsp.on_init,
---   capabilities = nvlsp.capabilities,
--- }
+lspconfig.ts_ls.setup {
+  on_attach = nvlsp.on_attach,
+  on_init = nvlsp.on_init,
+  capabilities = nvlsp.capabilities,
+}
 
 lspconfig.elixirls.setup({
     -- Optional: Specify the command to run ElixirLS if it's not automatically found.
