@@ -18,7 +18,7 @@ end
 
 require("mason").setup()
 require("mason-lspconfig").setup({
-  ensure_installed = { "rust_analyzer", "clangd", "pyright" },
+  ensure_installed = { "rust_analyzer", "clangd", "pyright", "elixirls" },
 })
 local nvim_lsp = require('lspconfig')
 local on_attach = function(client, bufnr)
@@ -55,6 +55,31 @@ nvim_lsp.pyright.setup({
 --   on_init = nvlsp.on_init,
 --   capabilities = nvlsp.capabilities,
 -- }
+
+lspconfig.elixirls.setup({
+    -- Optional: Specify the command to run ElixirLS if it's not automatically found.
+    -- This is often necessary if using a version manager like asdf.
+    -- Example for asdf:
+    -- cmd = { 'elixir-ls' }, -- assuming elixir-ls is in your PATH via asdf shims
+    -- Or a direct path:
+    -- cmd = { '/path/to/your/elixir-ls/release/language_server.sh' },
+
+    -- Optional: Configure settings specific to ElixirLS
+    settings = {
+        elixirls = {
+            dialyzerEnabled = false,
+            enableTestLenses = false,
+        },
+    },
+    on_attach = function(client, bufnr)
+        -- Set up keybindings or other buffer-specific configurations here
+        -- e.g., for go to definition, code actions, etc.
+        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = bufnr })
+        vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { buffer = bufnr })
+        -- ... other keymaps
+    end,
+})
+
 local cmp = require("cmp")
 local luasnip = require("luasnip")
 
