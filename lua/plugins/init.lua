@@ -38,7 +38,7 @@ return {
     build = ":TSUpdate",
     config = function()
       require('nvim-treesitter.configs').setup({
-        ensure_installed = { "markdown", "markdown_inline", "elixir", "heex", "eex", "vim", "lua", "vimdoc", "html", "css" },
+        ensure_installed = { "markdown", "markdown_inline", "elixir", "heex", "eex", "vim", "lua", "vimdoc", "html", "css", "typescript", "tsx" },
         highlight = {
           enable = true,
           additional_vim_regex_highlighting = false,
