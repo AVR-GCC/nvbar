@@ -1,33 +1,33 @@
 -- load defaults i.e lua_lsp
 require("nvchad.configs.lspconfig").defaults()
 
-local lspconfig = require "lspconfig"
-
 -- EXAMPLE
 local servers = { "html", "cssls" }
 local nvlsp = require "nvchad.configs.lspconfig"
 
 -- lsps with default config
 for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
+  vim.lsp.config(lsp, {
     on_attach = nvlsp.on_attach,
     on_init = nvlsp.on_init,
     capabilities = nvlsp.capabilities,
-  }
+  })
 end
 
 require("mason").setup()
 require("mason-lspconfig").setup({
   ensure_installed = { "rust_analyzer", "clangd", "pyright", "elixirls" },
 })
-local nvim_lsp = require('lspconfig')
+
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local on_attach = function(client, bufnr)
   -- Here you can define your key mappings or other behavior when LSP attaches
 end
 
-nvim_lsp.rust_analyzer.setup({
+vim.lsp.config.rust_analyzer = {
   cmd = { os.getenv("HOME") .. "/.local/bin/rust-analyzer" },
   on_attach = on_attach,
+  capabilities = capabilities,
   settings = {
     ['rust-analyzer'] = {
       checkOnSave = {
@@ -35,28 +35,24 @@ nvim_lsp.rust_analyzer.setup({
       },
     }
   }
-})
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
-nvim_lsp.rust_analyzer.setup({
+}
+
+vim.lsp.config.clangd = {
   capabilities = capabilities,
-  -- ... other settings from above ...
-})
-nvim_lsp.clangd.setup({
+}
+
+vim.lsp.config.pyright = {
   capabilities = capabilities,
-  -- ... other settings from above ...
-})
-nvim_lsp.pyright.setup({
-  capabilities = capabilities,
-  -- ... other settings from above ...
-})
+}
+
 -- configuring single server, example: typescript
-lspconfig.ts_ls.setup {
+vim.lsp.config.ts_ls = {
   on_attach = nvlsp.on_attach,
   on_init = nvlsp.on_init,
   capabilities = nvlsp.capabilities,
 }
 
-lspconfig.elixirls.setup({
+vim.lsp.config.elixirls = {
     -- Optional: Specify the command to run ElixirLS if it's not automatically found.
     -- This is often necessary if using a version manager like asdf.
     -- Example for asdf:
@@ -78,7 +74,7 @@ lspconfig.elixirls.setup({
         vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { buffer = bufnr })
         -- ... other keymaps
     end,
-})
+}
 
 local cmp = require("cmp")
 local luasnip = require("luasnip")
