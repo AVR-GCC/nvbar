@@ -2,7 +2,7 @@
 require("nvchad.configs.lspconfig").defaults()
 
 -- EXAMPLE
-local servers = { "html", "cssls" }
+local servers = { "html", "cssls", "tailwindcss" }
 local nvlsp = require "nvchad.configs.lspconfig"
 
 -- lsps with default config
@@ -75,6 +75,42 @@ vim.lsp.config.elixirls = {
         -- ... other keymaps
     end,
 }
+
+vim.lsp.config.tailwindcss = {
+  cmd = { "tailwindcss-language-server", "--stdio" },
+  capabilities = capabilities,
+  on_attach = on_attach,
+  filetypes = {
+    "html",
+    "css",
+    "scss",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "heex",
+    "eelixir",
+    "elixir",
+  },
+  init_options = {
+    userLanguages = {
+      heex = "html",
+      elixir = "html",
+      eelixir = "html",
+    },
+  },
+  settings = {
+    tailwindCSS = {
+      experimental = {
+        classRegex = {
+          [[class[:]?\s*"([^"]*)]],
+        },
+      },
+    },
+  },
+}
+
+vim.lsp.enable("tailwindcss")
 
 local cmp = require("cmp")
 local luasnip = require("luasnip")
