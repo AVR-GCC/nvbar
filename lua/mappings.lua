@@ -12,4 +12,32 @@ map("n", "<leader>u", "viw\"_dhp")
 map("n", "<leader>j", "f s<enter><ESC>")
 map("n", "<leader>k", "f,a<enter><ESC>")
 map('n', '<leader>lg', '<cmd>LazyGit<CR>', { noremap = true, silent = true })
+
+vim.keymap.set("v", "<leader>oc", function()
+  local start_pos = vim.fn.getpos("v")
+  local end_pos = vim.fn.getpos(".")
+  local start_line = start_pos[2]
+  local end_line = end_pos[2]
+
+  if start_line > end_line then
+    start_line, end_line = end_line, start_line
+  end
+
+  local filepath = vim.fn.expand("%")
+  local path = string.format("@%s", filepath)
+  local path_input_time = 200 + 20 * #path
+  local line_numbers = string.format(":%d-%d", start_line, end_line)
+
+  vim.cmd('normal! "+y')
+
+  os.execute("tmux send-keys -t ':.+1' -l '" .. path:gsub("'", "'\\''") .. "'")
+  vim.loop.sleep(path_input_time)
+  os.execute("tmux send-keys -t ':.+1' Enter")
+  os.execute("tmux send-keys -t ':.+1' -l '" .. line_numbers:gsub("'", "'\\''") .. "'")
+  os.execute("tmux send-keys -t ':.+1' C-j")
+  os.execute("tmux send-keys -t ':.+1' C-v")
+  os.execute("tmux send-keys -t ':.+1' C-j")
+  os.execute("tmux select-pane -t ':.+1'")
+end, { desc = "Send visual selection to OpenCode in adjacent tmux pane" })
+
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
