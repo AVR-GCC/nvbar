@@ -13,7 +13,8 @@ map("n", "<leader>j", "f s<enter><ESC>")
 map("n", "<leader>k", "f,a<enter><ESC>")
 map('n', '<leader>lg', '<cmd>LazyGit<CR>', { noremap = true, silent = true })
 
-vim.keymap.set("v", "<leader>oc", function()
+-- c (open[C]ode) - opencode in tmux pain
+vim.keymap.set("v", "<leader>cv", function()
   vim.cmd('normal! "+y')
 
   local filepath = vim.fn.expand("%")
@@ -45,5 +46,12 @@ vim.keymap.set("v", "<leader>oc", function()
   os.execute("tmux send-keys -t ':.+1' C-j")
   os.execute("tmux select-pane -t ':.+1'")
 end, { desc = "Send visual selection to OpenCode in adjacent tmux pane" })
+
+vim.keymap.set({"n", "i", "v"}, "<leader>cb", function()
+  os.execute("tmux send-keys -t ':.+1' C-x")
+  os.execute("tmux send-keys -t ':.+1' -l 'n'")
+  os.execute("tmux send-keys -t ':.+1' C-x")
+  os.execute("tmux send-keys -t ':.+1' C-c")
+end, { desc = "Clear OpenCode in adjacent tmux pane" })
 
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
