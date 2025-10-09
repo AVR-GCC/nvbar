@@ -71,7 +71,6 @@ return {
     'kdheepak/lazygit.nvim',
     lazy = false,
   },
-  { "neoclide/coc.nvim", branch = "release" },
   {
     'MeanderingProgrammer/render-markdown.nvim',
     ft = { "markdown" },
