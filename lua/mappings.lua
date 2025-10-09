@@ -47,7 +47,7 @@ vim.keymap.set("v", "<leader>cv", function()
   os.execute("tmux select-pane -t ':.+1'")
 end, { desc = "Send visual selection to OpenCode in adjacent tmux pane" })
 
-vim.keymap.set({"n", "i", "v"}, "<leader>cb", function()
+vim.keymap.set({"n", "v"}, "<leader>cb", function()
   os.execute("tmux send-keys -t ':.+1' C-x")
   os.execute("tmux send-keys -t ':.+1' -l 'n'")
   os.execute("tmux send-keys -t ':.+1' C-x")
