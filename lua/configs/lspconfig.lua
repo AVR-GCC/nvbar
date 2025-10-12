@@ -1,6 +1,8 @@
 -- load defaults i.e lua_lsp
 require("nvchad.configs.lspconfig").defaults()
 
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
 -- EXAMPLE
 local servers = { "html", "cssls", "tailwindcss" }
 local nvlsp = require "nvchad.configs.lspconfig"
@@ -19,7 +21,6 @@ require("mason-lspconfig").setup({
   ensure_installed = { "rust_analyzer", "clangd", "pyright", "elixirls" },
 })
 
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local on_attach = function(client, bufnr)
   -- Here you can define your key mappings or other behavior when LSP attaches
 end
