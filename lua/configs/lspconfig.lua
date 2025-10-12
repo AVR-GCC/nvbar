@@ -53,14 +53,7 @@ vim.lsp.config.ts_ls = {
 }
 
 vim.lsp.config.elixirls = {
-    -- Optional: Specify the command to run ElixirLS if it's not automatically found.
-    -- This is often necessary if using a version manager like asdf.
-    -- Example for asdf:
-    -- cmd = { 'elixir-ls' }, -- assuming elixir-ls is in your PATH via asdf shims
-    -- Or a direct path:
-    -- cmd = { '/path/to/your/elixir-ls/release/language_server.sh' },
-
-    -- Optional: Configure settings specific to ElixirLS
+    cmd = { 'elixir-ls' },
     settings = {
         elixirls = {
             dialyzerEnabled = false,
