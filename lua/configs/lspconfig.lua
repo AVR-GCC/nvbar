@@ -21,7 +21,8 @@ require("mason-lspconfig").setup({
 })
 
 local on_attach = function(client, bufnr)
-  -- Here you can define your key mappings or other behavior when LSP attaches
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = bufnr })
+  vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { buffer = bufnr })
 end
 
 vim.lsp.config.rust_analyzer = {
@@ -45,7 +46,6 @@ vim.lsp.config.pyright = {
   capabilities = capabilities,
 }
 
--- configuring single server, example: typescript
 vim.lsp.config.ts_ls = {
   on_attach = nvlsp.on_attach,
   on_init = nvlsp.on_init,
@@ -60,13 +60,6 @@ vim.lsp.config.elixirls = {
             enableTestLenses = false,
         },
     },
-    on_attach = function(client, bufnr)
-        -- Set up keybindings or other buffer-specific configurations here
-        -- e.g., for go to definition, code actions, etc.
-        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = bufnr })
-        vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { buffer = bufnr })
-        -- ... other keymaps
-    end,
 }
 
 vim.lsp.config.tailwindcss = {
