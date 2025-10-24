@@ -17,7 +17,7 @@ end
 
 require("mason").setup()
 require("mason-lspconfig").setup({
-  ensure_installed = { "rust_analyzer", "clangd", "pyright", "elixirls" },
+  ensure_installed = { "rust_analyzer", "clangd", "pyright", "elixirls", "ocamllsp" },
 })
 
 local on_attach = function(client, bufnr)
@@ -104,6 +104,13 @@ vim.lsp.config.tailwindcss = {
 }
 
 vim.lsp.enable("tailwindcss")
+
+vim.lsp.config.ocamllsp = {
+  cmd = { "ocamllsp" },
+  filetypes = { "ocaml", "ocaml.menhir", "ocaml.interface", "ocaml.ocamllex", "reason", "dune" },
+  root_markers = { "*.opam", "esy.json", "package. json", ".git", "dune-project", "dune-workspace" },
+  capabilities = capabilities,
+}
 
 local cmp = require("cmp")
 local luasnip = require("luasnip")
